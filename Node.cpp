@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "Node.h"
-
+#include "Vertix.h"
 using namespace std;
 
 Node::Node()
