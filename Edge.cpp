@@ -5,9 +5,8 @@
 
 using namespace std;
 
-Edge::Edge()
-{
-}
+Edge::Edge(){
+    setVDest}
 
 Edge::~Edge()
 {
@@ -30,7 +29,8 @@ void Edge::setVDest(Vertix v)
 {
     vDest = v;
 }
-void Edge :: setEdge(Vertix v1, Vertix v2){
-    this -> vSource = v1;
-    this -> vDest = v2;
+void Edge ::setEdge(Vertix v1, Vertix v2)
+{
+    this->vSource = v1;
+    this->vDest = v2;
 }

@@ -11,7 +11,8 @@ private:
     double weight;
 
     string label;
-    //boolean digraph ? 
+
+    bool isDirected;
 
 public:
     Edge();
