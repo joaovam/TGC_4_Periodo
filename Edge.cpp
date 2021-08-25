@@ -8,7 +8,7 @@ using namespace std;
 
 Edge::Edge()
 {
-    this->weight = 0;
+    this->weight = -1;
     this->label = "";
     this->isDirected = false;
     this->vSource = NULL;
