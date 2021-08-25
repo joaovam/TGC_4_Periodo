@@ -1,24 +1,24 @@
-/**
- * Node class for the linked list.
- * In this project called AdjacencyList.
- * 
- * **/
+
 #ifndef NODE_H
 #define NODE_H
+#include "Vertex.h"
 class Node
 {
 private:
-    Vertix vertix;
+    Vertex *vertex;
     Node *next;
 
 public:
     Node();
     ~Node();
-    Node(Vertix vertix);
-    Node(Vertix vertix, Node *next);
-    Vertix getVertix();
+
+    Node(Vertex *vertex);
+    Node(string label);
+    Node(Vertex *vertex, Node *next);
+
+    Vertex *getVertex();
     Node *getNext();
-    void setVertix(Vertix vertix);
+    void setVertex(Vertex *vertex);
     void setNext(Node *next);
 };
 
