@@ -18,6 +18,7 @@ public:
     AdjacencyList(int V);
     AdjacencyList(Node *head, Node *tail, int V, Edge *edges, int E);
     void add(Node *node);
+    void addEdge(Node *node1, Node *node2);
     void remove(Node *node);
     void print();
 };
