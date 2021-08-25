@@ -30,3 +30,7 @@ void Edge::setVDest(Vertix v)
 {
     vDest = v;
 }
+void Edge :: setEdge(Vertix v1, Vertix v2){
+    this -> vSource = v1;
+    this -> vDest = v2;
+}

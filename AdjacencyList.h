@@ -1,5 +1,6 @@
 #ifndef ADJACENCYLIST_H
 #define ADJACENCYLIST_H
+#include "Node.h"
 class AdjacencyList
 {
 

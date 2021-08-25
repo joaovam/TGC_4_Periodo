@@ -1,6 +1,7 @@
 
 #ifndef EDGE
 #define EDGE
+#include "Vertix.h"
 class Edge
 {
 private:
@@ -10,6 +11,7 @@ private:
     double weight;
 
     string label;
+    //boolean digraph ? 
 
 public:
     Edge();
@@ -18,6 +20,7 @@ public:
     Vertix getVDest();
     void setVSource(Vertix v);
     void setVDest(Vertix v);
+    void setEdge(Vertix v1, Vertix v2);
 };
 
 #endif
