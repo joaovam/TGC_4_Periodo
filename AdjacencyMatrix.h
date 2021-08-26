@@ -7,9 +7,10 @@ private:
     int **matrix;
 
 public:
-    AdjacencyMatrix();
+    AdjacencyMatrix(int lines, int columns);
     ~AdjacencyMatrix();
     void addToMatrix(Edge edge);
-    void showMatriz();
+    void showMatrix();
     void showGraph();
+    
 };

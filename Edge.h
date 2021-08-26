@@ -7,11 +7,8 @@ class Edge
 private:
     Vertex *vSource;
     Vertex *vDest;
-
     double weight;
-
     string label;
-
     bool isDirected;
 
 public:
