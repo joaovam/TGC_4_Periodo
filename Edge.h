@@ -1,15 +1,18 @@
 
-#ifndef EDGE
-#define EDGE
+#ifndef EDGE_H
+#define EDGE_H
 #include "Vertex.h"
 class Edge
 {
 private:
-    Vertex *vSource;
-    Vertex *vDest;
-    double weight;
-    string label;
-    bool isDirected;
+    Vertex *vSource = NULL;
+    Vertex *vDest = NULL;
+
+    double weight = -1;
+
+    string label = "";
+
+    bool isDirected = false;
 
 public:
     Edge();

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "Node.h"
-#include "Vertix.h"
+
 using namespace std;
 
 Node::Node()
@@ -12,28 +12,46 @@ Node::~Node()
 {
 }
 
-Node::Node(Vertix vertix)
+Node::Node(Vertex *vertex)
 {
-    setVertix(vertix);
+    setVertex(vertex);
 }
-Node::Node(Vertix vertix, Node *next)
+Node::Node(string label)
 {
-    setVertix(vertix);
+    this->setVertex(new Vertex(-1, label));
+}
+Node::Node(Vertex *vertex, Node *next, Node *bottom)
+{
+    setVertex(vertex);
     setNext(next);
+    setBottom(bottom);
 }
-Vertix Node::getVertix()
+
+Vertex *Node::getVertex()
 {
-    return vertix;
+    return vertex;
 }
 Node *Node::getNext()
 {
     return next;
 }
-void Node::setVertix(Vertix vertix)
+Node *Node::getBottom()
 {
-    vertix = vertix;
+    return bottom;
+}
+void Node::setVertex(Vertex *vertex)
+{
+    vertex = vertex;
 }
 void Node::setNext(Node *next)
 {
     next = next;
+}
+void Node::setBottom(Node *bottom)
+{
+    bottom = bottom;
+}
+Node *Node::clone()
+{
+    Node *newNode = new Node(this->getVertex(), this->getNext(), this->getBottom());
 }
