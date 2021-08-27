@@ -159,7 +159,7 @@ void AdjacencyList::addEdge(int ID1, int ID2, int weight)
     }
     else
     {
-        cout << "Adding edge between " << ID1 << " and " << ID2 << " with weight " << weight << endl;
+
         addEdge(tmp1, tmp2, weight);
     }
 }
