@@ -1,8 +1,11 @@
+
+#ifndef VERTEX_H
+#define VERTEX_H
+
 #include <iostream>
 #include <string>
 using namespace std;
-#ifndef VERTEX_H
-#define VERTEX_H
+
 class Vertex
 {
 private:

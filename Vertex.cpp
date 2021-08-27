@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,7 +14,7 @@ Vertex ::Vertex(int weight, string label, int number)
 {
     this->weight = weight;
     this->label = label;
-    this -> id = number;
+    this->id = number;
 }
 Vertex::~Vertex() {}
 
@@ -24,10 +26,10 @@ void Vertex::setLabel(string label)
 {
     this->label = label;
 }
-void Vertex :: setId(int number){
-    this -> id = number;
+void Vertex ::setId(int number)
+{
+    this->id = number;
 }
-
 
 void Vertex::setVertex(Vertex vertex)
 {
@@ -44,8 +46,9 @@ string Vertex ::getLabel()
 {
     return this->label;
 }
-int Vertex :: getId(){
-    return this -> id;
+int Vertex ::getId()
+{
+    return this->id;
 }
 void Vertex::showVertex()
 {

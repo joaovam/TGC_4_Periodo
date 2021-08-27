@@ -1,4 +1,8 @@
+#ifndef ADJACENCYMATRIX_H
+#define ADJACENCYMATRIX_H
+
 #include "Edge.h"
+
 class AdjacencyMatrix
 {
 private:
@@ -12,5 +16,6 @@ public:
     void addToMatrix(Edge edge);
     void showMatrix();
     void showGraph();
-    
 };
+
+#endif

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cstring>
 #include "Node.h"
@@ -6,6 +7,8 @@ using namespace std;
 
 Node::Node()
 {
+    this->setNext(NULL);
+    this->setBottom(NULL);
 }
 
 Node::~Node()
@@ -15,10 +18,15 @@ Node::~Node()
 Node::Node(Vertex *vertex)
 {
     setVertex(vertex);
+    this->setNext(NULL);
+    this->setBottom(NULL);
 }
 Node::Node(string label)
 {
-    this->setVertex(new Vertex(-1, label));
+
+    this->setVertex(new Vertex(-1, label, -1));
+    this->setNext(NULL);
+    this->setBottom(NULL);
 }
 Node::Node(Vertex *vertex, Node *next, Node *bottom)
 {
@@ -41,17 +49,17 @@ Node *Node::getBottom()
 }
 void Node::setVertex(Vertex *vertex)
 {
-    vertex = vertex;
+    this->vertex = vertex;
 }
 void Node::setNext(Node *next)
 {
-    next = next;
+    this->next = next;
 }
 void Node::setBottom(Node *bottom)
 {
-    bottom = bottom;
+    this->bottom = bottom;
 }
 Node *Node::clone()
 {
-    Node *newNode = new Node(this->getVertex(), this->getNext(), this->getBottom());
+    return new Node(this->getVertex(), this->getNext(), this->getBottom());
 }

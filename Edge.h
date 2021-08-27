@@ -5,14 +5,14 @@
 class Edge
 {
 private:
-    Vertex *vSource = NULL;
-    Vertex *vDest = NULL;
+    Vertex *vSource;
+    Vertex *vDest;
 
-    double weight = -1;
+    double weight;
 
-    string label = "";
+    string label;
 
-    bool isDirected = false;
+    bool isDirected;
 
 public:
     Edge();
