@@ -29,7 +29,7 @@ public:
 
     void add(Vertex *);
     void add();
-    void addEdge(Node *node1, Node *node2);
+    void addEdge(Node *node1, Node *node2, int weight);
     void addEdge(int ID1, int ID2);
     void addEdge(int ID1, int ID2, int weight1);
     void remove(Node *node);

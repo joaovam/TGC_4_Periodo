@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
         listDirectedPonder->add(new Vertex(2, "4", -1));
         listDirectedPonder->addEdge(0, 1, 5);
         listDirectedPonder->addEdge(1, 2, 2);
-        listDirectedPonder->addEdge(2, 3);
-        listDirectedPonder->addEdge(3, 0);
+        listDirectedPonder->addEdge(2, 3, 0);
+        listDirectedPonder->addEdge(3, 0, 0);
         listDirectedPonder->print();
 
         /**
