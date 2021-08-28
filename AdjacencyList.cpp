@@ -146,7 +146,7 @@ void AdjacencyList::addEdge(int ID1, int ID2)
     else
     {
         addEdge(tmp1, tmp2, -1);
-        cout << "\nAdded an edge between " << tmp1->getVertex()->getId() << " and " << tmp2->getVertex()->getId() << endl;
+        cout << "\nAdded an edge between " << tmp1->getVertex()->getLabel() << " and " << tmp2->getVertex()->getLabel() << endl;
     }
 }
 
@@ -169,7 +169,7 @@ void AdjacencyList::addEdge(int ID1, int ID2, int weight)
     {
 
         addEdge(tmp1, tmp2, weight);
-        cout << "\nAdded an edge between " << tmp1->getVertex()->getId() << " and " << tmp2->getVertex()->getId() << endl;
+        cout << "\nAdded an edge between " << tmp1->getVertex()->getLabel() << " and " << tmp2->getVertex()->getLabel() << endl;
     }
 }
 
@@ -192,7 +192,7 @@ void AdjacencyList::print()
             for (Node *line = column; line != NULL; line = line->getNext())
             {
                 if (line->getVertex()->getWeight() != -1)
-                    cout << " " + line->getVertex()->getLabel() << " ( " << line->getVertex()->getWeight() << " ) -> ";
+                    cout << " " + line->getVertex()->getLabel() << " Weight: (" << line->getVertex()->getWeight() << ") -> ";
                 else
                     cout << " " + line->getVertex()->getLabel() << " -> ";
             }
