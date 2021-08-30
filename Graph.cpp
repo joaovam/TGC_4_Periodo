@@ -5,23 +5,33 @@
 using namespace std;
 int E;
 int V;
-
-Graph:: Graph(){
-     this -> numberVertex = 0;
+Graph :: Graph(){
+    this -> numberVertex = 0;
     this -> numberEdges = 0;
     this -> edges = (Edge *)malloc(numberEdges * sizeof(int *));
     this -> vertexes = (Vertex *)malloc(numberVertex * sizeof(int *)); 
     E = 0;
     V = 0;
+    this -> pondered = false;
+}
+Graph:: Graph(bool pondered){
+    this -> numberVertex = 0;
+    this -> numberEdges = 0;
+    this -> edges = (Edge *)malloc(numberEdges * sizeof(int *));
+    this -> vertexes = (Vertex *)malloc(numberVertex * sizeof(int *)); 
+    E = 0;
+    V = 0;
+    this -> pondered = pondered;
 
 }
-Graph:: Graph(int numberVertex, int numberEdges){
+Graph:: Graph(int numberVertex, int numberEdges, bool pondered){
     this ->numberVertex = numberVertex;
     this -> numberEdges = numberEdges;
     this -> edges = (Edge *)malloc(numberEdges * sizeof(int *));
     this -> vertexes = (Vertex *)malloc(numberVertex * sizeof(int *)); 
     V = numberVertex;
     E = numberEdges;
+    this -> pondered = pondered;
 }
 Graph :: ~Graph(){}
 void Graph :: addRelationship(double weight, string label, bool directed, Vertex *v1, Vertex *v2) {
@@ -57,6 +67,12 @@ void Graph :: setNumberEdges(int n){
 void Graph :: setNumberVertex(int n){
     this -> numberVertex = n;
 }
+void Graph ::setPondered(bool pondered){
+    this -> pondered = pondered;
+}
+bool Graph :: getPondered(){
+   return this -> pondered;
+}
 int Graph :: getNumberEdges(){
     return this -> numberEdges;
 }
@@ -73,9 +89,19 @@ void Graph :: showGraph(){
     /*cout << "\n N Edges =" << getNumberEdges();
     cout << "\n N Vertexes = \n" << getNumberVertex();*/
     cout << "G(V,E) = { ";
+
     for (int i =  0; i < this -> getNumberEdges() ; i++ ){
-        this -> edges[i].showEdge();
-        cout <<" , ";
+       if(this -> edges[i].getWeight() == 0 )
+            this -> edges[i].showEdge();
+
+        else{
+            this -> edges[i].showEdge();
+            cout << "[ " << this -> edges[i].getWeight() << " ]";
+        }
+
+       if( i < this -> getNumberEdges() - 1){
+            cout <<" , ";
+        }
     }
     cout << " }" << endl;
 }

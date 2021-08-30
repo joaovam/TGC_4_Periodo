@@ -3,6 +3,7 @@
 
 #include "Edge.h"
 #include "Graph.h"
+#include "Vertex.h"
 
 class AdjacencyMatrix
 {
@@ -10,7 +11,8 @@ private:
     int lines;
     int columns;
     int **matrix;
-
+    Graph graphRelated;
+    Vertex *matrixVertexes;
 public:
     AdjacencyMatrix(int lines, int columns);
     ~AdjacencyMatrix();
@@ -18,6 +20,10 @@ public:
     void addToMatrix(Edge edge);
     void showMatrix();
     void showGraph();
+    int getNumberLines ();
+    int getNumberColumns();
+    void setLines(int lines);
+    void setColumns(int columns);
 };
 
 #endif
