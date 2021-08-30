@@ -7,6 +7,19 @@ int main(int argc, char *argv[])
 {
     try
     {
+        Graph directedNonPondered =  Graph();
+        directedNonPondered.addVertex(Vertex(1, "1", 0));
+        directedNonPondered.addVertex(Vertex(1, "2", 1));
+        directedNonPondered.addVertex(Vertex(1, "3", 2));
+        directedNonPondered.addVertex(Vertex(1, "4", 3));
+        directedNonPondered.addRelationship(0, "1-2", true, &directedNonPondered.getVertexes()[0],&directedNonPondered.getVertexes()[1] );
+        directedNonPondered.addRelationship(0, "1-3", true, &directedNonPondered.getVertexes()[0],&directedNonPondered.getVertexes()[2] );
+        directedNonPondered.addRelationship(0, "1-4", true, &directedNonPondered.getVertexes()[0],&directedNonPondered.getVertexes()[3] );
+        directedNonPondered.addRelationship(0, "2-3", true, &directedNonPondered.getVertexes()[1],&directedNonPondered.getVertexes()[2] );
+        directedNonPondered.addRelationship(0, "3-4", true, &directedNonPondered.getVertexes()[2],&directedNonPondered.getVertexes()[3] );
+        directedNonPondered.showGraph();
+        //AdjacencyMatrix MdirectedNonPondered= AdjacencyMatrix (directedNonPondered);
+       // MdirectedNonPondered.showMatrix();
 
         AdjacencyList *listDirectedNotPonder = new AdjacencyList();
         cout << "Creating directed not ponderated Graph";
@@ -23,7 +36,7 @@ int main(int argc, char *argv[])
         listDirectedNotPonder->print();
 
         AdjacencyList *listDirectedPonder = new AdjacencyList();
-        cout << "Creating directed ponderated Graph";
+        cout << "Creating directed ponderated Graph\n";
         listDirectedPonder->add(new Vertex(10, "1", -1));
         listDirectedPonder->add(new Vertex(0, "2", -1));
         listDirectedPonder->add(new Vertex(0, "3", -1));

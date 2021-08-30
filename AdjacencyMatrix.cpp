@@ -5,6 +5,8 @@ using namespace std;
 #include "AdjacencyMatrix.h"
 #include "Edge.h"
 #include "Vertex.h"
+#include "Graph.h"
+#include "Graph.cpp"
 
 AdjacencyMatrix::AdjacencyMatrix(int lines, int columns)
 {
@@ -35,6 +37,7 @@ void AdjacencyMatrix ::addToMatrix(Edge edge)
 }
 void AdjacencyMatrix::showMatrix()
 {
+    cout << "\n";
     for (int i = 0; i < this->lines; i++)
     {
         for (int j = 0; j < this->columns; j++)
@@ -47,10 +50,15 @@ void AdjacencyMatrix::showMatrix()
 void AdjacencyMatrix ::showGraph()
 {
 }
-void AdjacencyMatrix ::addGrah(Graph graph){
+ AdjacencyMatrix ::AdjacencyMatrix(Graph graph){
     AdjacencyMatrix(graph.getNumberVertex(), graph.getNumberVertex());
-    for(int i =0; i < graph.getNumberVertex(); i++){
+   /// cout << "nE = " <<  graph.getNumberEdges();
+   //cout << "nv = " << graph.getNumberVertex();
+   this -> addToMatrix(graph.getEdges()[0]);
+    /*for(int i =0; i < graph.getNumberEdges(); i++){
+        graph.getEdges()[i].showEdge();
+        cout << "wee";
         addToMatrix(graph.getEdges()[i]);
-    }
+    }*/
     
 }

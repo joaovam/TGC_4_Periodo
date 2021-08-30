@@ -25,20 +25,31 @@ Graph:: Graph(int numberVertex, int numberEdges){
 }
 Graph :: ~Graph(){}
 void Graph :: addRelationship(double weight, string label, bool directed, Vertex *v1, Vertex *v2) {
-    this-> edges[E] = Edge(weight, label, directed, v1, v2);
     E++;
+    Edge edgeToAdd = Edge(weight, label, directed, v1, v2 );
+    //cout << "E = " << E;
+    Edge *auxEdge = new Edge[E];
+     if (E > 1){
+        for (int i = 0; i < E - 1; i++){
+            auxEdge[i] = this -> edges[i];
+        }
+     }
+     auxEdge[E - 1] = edgeToAdd;
+    this-> edges = auxEdge;
     this -> setNumberEdges(this -> getNumberEdges()+1);
 }
 void Graph ::addVertex(Vertex vertex){
      V++;
      Vertex *auxVertex = new Vertex[V];
-     for (int i = 0; i < V - 1; i++){
-         auxVertex[i] = this -> vertexes[i];
+     if (V > 1){
+        for (int i = 0; i < V - 1; i++){
+            auxVertex[i] = this -> vertexes[i];
+        }
      }
-     auxVertex[V] = vertex;
+     auxVertex[V - 1] = vertex;
+     
      this -> vertexes = auxVertex;
-     int nVertexes = (this -> getNumberVertex());
-     this -> setNumberVertex(nVertexes ++);
+     this -> setNumberVertex(this -> getNumberVertex() + 1);
 }
 void Graph :: setNumberEdges(int n){
     this -> numberEdges = n;
@@ -59,7 +70,12 @@ Vertex * Graph :: getVertexes(){
     return this -> vertexes;
 }
 void Graph :: showGraph(){
+    /*cout << "\n N Edges =" << getNumberEdges();
+    cout << "\n N Vertexes = \n" << getNumberVertex();*/
+    cout << "G(V,E) = { ";
     for (int i =  0; i < this -> getNumberEdges() ; i++ ){
         this -> edges[i].showEdge();
+        cout <<" , ";
     }
+    cout << " }" << endl;
 }

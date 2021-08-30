@@ -14,7 +14,7 @@ private:
 public:
     AdjacencyMatrix(int lines, int columns);
     ~AdjacencyMatrix();
-    void addGrah(Graph graph);
+     AdjacencyMatrix(Graph graph);
     void addToMatrix(Edge edge);
     void showMatrix();
     void showGraph();
