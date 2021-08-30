@@ -9,19 +9,19 @@ using namespace std;
 class Vertex
 {
 private:
-  int weight;
+  double weight;
   string label;
   int id;
 
 public:
   Vertex();
-  Vertex(int weitght, string label, int number);
+  Vertex(double weitght, string label, int number);
   ~Vertex();
-  void setWeight(int weight);
+  void setWeight(double weight);
   void setLabel(string label);
   void setId(int number);
   void setVertex(Vertex vertex);
-  int getWeight();
+  double getWeight();
   int getId();
   string getLabel();
   void showVertex();

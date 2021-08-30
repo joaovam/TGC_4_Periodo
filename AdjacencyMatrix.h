@@ -2,6 +2,7 @@
 #define ADJACENCYMATRIX_H
 
 #include "Edge.h"
+#include "Graph.h"
 
 class AdjacencyMatrix
 {
@@ -13,6 +14,7 @@ private:
 public:
     AdjacencyMatrix(int lines, int columns);
     ~AdjacencyMatrix();
+    void addGrah(Graph graph);
     void addToMatrix(Edge edge);
     void showMatrix();
     void showGraph();

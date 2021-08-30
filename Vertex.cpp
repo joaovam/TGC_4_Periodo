@@ -10,7 +10,7 @@ Vertex ::Vertex()
     this->weight = 0;
     this->label = "";
 }
-Vertex ::Vertex(int weight, string label, int number)
+Vertex ::Vertex(double weight, string label, int number)
 {
     this->weight = weight;
     this->label = label;
@@ -18,7 +18,7 @@ Vertex ::Vertex(int weight, string label, int number)
 }
 Vertex::~Vertex() {}
 
-void Vertex::setWeight(int weight)
+void Vertex::setWeight(double weight)
 {
     this->weight = weight;
 }
@@ -37,7 +37,7 @@ void Vertex::setVertex(Vertex vertex)
     this->label = vertex.getLabel();
 };
 
-int Vertex ::getWeight()
+double Vertex ::getWeight()
 {
     return this->weight;
 }

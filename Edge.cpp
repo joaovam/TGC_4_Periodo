@@ -80,8 +80,14 @@ void Edge::setIsDirected(bool b)
     isDirected = b;
 }
 
-void Edge::showEdge()
+void Edge::showEdgeComplete()
 {
-    cout << "Edge: " << this->label << " " << this->weight << "From Vertex: " << vSource->getLabel()
+    cout << "Edge: " << this->label << " " << this-> weight << "From Vertex: " << vSource->getLabel()
          << "To Vertex: " << vDest->getLabel() << endl;
+}
+
+void Edge :: showEdge(){
+   string separatorInit = this -> getIsDirected()  ? "(" : "{";
+   string separatorEnd = this -> getIsDirected () ? ")" : "}";
+   cout << separatorInit << " " << this -> getVSource() -> getLabel() << ", " << this -> getVDest() -> getLabel() << " " << separatorEnd;
 }

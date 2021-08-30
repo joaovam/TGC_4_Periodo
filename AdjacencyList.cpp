@@ -156,9 +156,9 @@ void AdjacencyList::addEdge(int ID1, int ID2, int weight)
         {
             cout << "Edge is not NULL" << endl;
 
-            for (int i = 0; i < E; i++)
+            for (int i = 0; i < E; i++)    
             {
-                tempEdge[i] = edge[i];
+                tempEdge[i] = edge[i]; 
             }
             tempEdge[E - 1] = Edge(weight, " ", true, tmp1->getVertex(), tmp2->getVertex());
             this->edge = tempEdge;

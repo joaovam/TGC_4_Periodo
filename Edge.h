@@ -31,6 +31,7 @@ public:
     void setLabel(string);
     void setIsDirected(bool);
     void showEdge();
+    void showEdgeComplete();
 };
 
 #endif

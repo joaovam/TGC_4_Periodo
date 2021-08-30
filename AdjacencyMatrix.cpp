@@ -47,3 +47,10 @@ void AdjacencyMatrix::showMatrix()
 void AdjacencyMatrix ::showGraph()
 {
 }
+void AdjacencyMatrix ::addGrah(Graph graph){
+    AdjacencyMatrix(graph.getNumberVertex(), graph.getNumberVertex());
+    for(int i =0; i < graph.getNumberVertex(); i++){
+        addToMatrix(graph.getEdges()[i]);
+    }
+    
+}
