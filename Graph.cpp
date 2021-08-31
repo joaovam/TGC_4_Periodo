@@ -56,8 +56,7 @@ void Graph ::addVertex(Vertex vertex){
             auxVertex[i] = this -> vertexes[i];
         }
      }
-     auxVertex[V - 1] = vertex;
-     
+     auxVertex[V - 1] = vertex;     
      this -> vertexes = auxVertex;
      this -> setNumberVertex(this -> getNumberVertex() + 1);
 }
