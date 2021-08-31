@@ -8,6 +8,7 @@ private:
     Vertex *vertex;
     Node *next;   //Go to right
     Node *bottom; //Go to bottom
+    //int weight;   //Weight of the edge // a ser implementado para remoção do array de edge da lista de adjacência
 
 public:
     Node();
