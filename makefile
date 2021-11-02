@@ -1,5 +1,5 @@
 #makefile
-all:  Vertex Edge Node AdjacencyList AdjacencyMatrix main exec
+all:  Vertex Edge Node Adjacency AdjacencyList AdjacencyMatrix main exec
 
 AdjacencyList:
 	@echo "AdjacencyList Building"
@@ -11,6 +11,9 @@ AdjacencyMatrix:
 Node:
 	@echo "Node Building"
 	g++ -c Node.cpp
+Adjacency:
+	@echo "Adjacency Building"
+	g++ -c Adjacency.cpp
 Vertex:
 	@echo "Vertex Building"
 	g++ -c Vertex.cpp

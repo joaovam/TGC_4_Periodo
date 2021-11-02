@@ -13,17 +13,19 @@ private:
     int **matrix;
     Graph graphRelated;
     Vertex *matrixVertexes;
+
 public:
     AdjacencyMatrix(int lines, int columns);
     ~AdjacencyMatrix();
-     AdjacencyMatrix(Graph graph);
+    AdjacencyMatrix(Graph graph);
     void addToMatrix(Edge edge);
     void showMatrix();
     void showGraph();
-    int getNumberLines ();
+    int getNumberLines();
     int getNumberColumns();
     void setLines(int lines);
     void setColumns(int columns);
+    int **GetMatrix();
 };
 
 #endif

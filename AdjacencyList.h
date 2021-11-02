@@ -3,6 +3,8 @@
 
 #include "Node.h"
 #include "Edge.h"
+#include "Adjacency.h"
+#include "Graph.h"
 
 class AdjacencyList
 {
@@ -12,20 +14,21 @@ private:
     Node *tail;
     int V; //Number of Vertices
     int E; //Number of edges
-    Edge *edge;
+    bool ponderated;
 
 public:
     AdjacencyList();
     ~AdjacencyList();
     AdjacencyList(int V);
+    AdjacencyList(int V, bool ponderated);
+    AdjacencyList(Graph *graph);
     AdjacencyList(Node *head, Node *tail, int V, int E);
-    AdjacencyList(Node *head, Node *tail, int V, int E, Edge *edge);
+    AdjacencyList(Node *head, Node *tail, int V, int E, bool ponderated);
 
     Node *getHead() { return head; }
     Node *getTail() { return tail; }
     int getV() { return V; }
     int getE() { return E; }
-    Edge *getEdge() { return edge; }
 
     void add(Vertex *);
     void add();

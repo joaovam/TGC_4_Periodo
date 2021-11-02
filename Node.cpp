@@ -28,7 +28,7 @@ Node::Node(string label)
     this->setNext(NULL);
     this->setBottom(NULL);
 }
-Node::Node(Vertex *vertex, Node *next, Node *bottom)
+Node::Node(Vertex *vertex, Adjacency *next, Node *bottom)
 {
     setVertex(vertex);
     setNext(next);
@@ -39,7 +39,7 @@ Vertex *Node::getVertex()
 {
     return vertex;
 }
-Node *Node::getNext()
+Adjacency *Node::getNext()
 {
     return next;
 }
@@ -51,7 +51,7 @@ void Node::setVertex(Vertex *vertex)
 {
     this->vertex = vertex;
 }
-void Node::setNext(Node *next)
+void Node::setNext(Adjacency *next)
 {
     this->next = next;
 }

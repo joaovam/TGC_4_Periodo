@@ -8,10 +8,18 @@ AdjacencyList::AdjacencyList()
     this->tail = head;
     this->V = 0;
     this->E = 0;
-    this->edge = NULL;
+    this->ponderated = false;
 
     cout << "\nCreated null graph\n"
          << endl;
+}
+AdjacencyList::AdjacencyList(int V, bool ponderated)
+{
+    this->head = new Node("HEAD");
+    this->tail = head;
+    this->V = 0;
+    this->E = 0;
+    this->ponderated = ponderated;
 }
 AdjacencyList::AdjacencyList(Node *head, Node *tail, int V, int E)
 {
@@ -19,17 +27,29 @@ AdjacencyList::AdjacencyList(Node *head, Node *tail, int V, int E)
     this->tail = head;
     this->V = V;
     this->E = E;
-    this->edge = NULL;
+    this->ponderated = false;
+    int tmpInt = 0;
+    for (Node *tmp = head->getBottom(); tmp != tail; tmp = tmp->getBottom())
+    {
+
+        tmp->getVertex()->setId(tmpInt++);
+    }
     cout << "\nCreated Graph from the data inserted\n"
          << endl;
 }
-AdjacencyList::AdjacencyList(Node *head, Node *tail, int V, int E, Edge *edge)
+AdjacencyList::AdjacencyList(Node *head, Node *tail, int V, int E, bool ponderated)
 {
     this->head = head;
     this->tail = head;
     this->V = V;
     this->E = E;
-    this->edge = edge;
+    this->ponderated = ponderated;
+    int tmpInt = 0;
+    for (Node *tmp = head->getBottom(); tmp != tail; tmp = tmp->getBottom())
+    {
+        tmp->getVertex()->setId(tmpInt++);
+    }
+
     cout << "\nCreated Graph from the data inserted\n"
          << endl;
 }
@@ -37,13 +57,13 @@ AdjacencyList::AdjacencyList(int v)
 {
 
     //The bottom is because of the way the array is allocated, we can go to the right or down
-    this->head = new Node("0");
+    this->head = new Node("HEAD");
 
     Node *tmp = this->head;
 
     for (int i = 0; i < v; i++, tmp = tmp->getBottom())
     {
-        Node *temp = new Node(to_string(this->V));
+        Node *temp = new Node(to_string(this->V + 1));
 
         temp->getVertex()->setId(this->V++);
 
@@ -56,14 +76,36 @@ AdjacencyList::AdjacencyList(int v)
          << endl;
 }
 
+AdjacencyList::AdjacencyList(Graph *graph)
+{
+
+    this->head = new Node("HEAD");
+    this->tail = head;
+
+    Edge *edge = graph->getEdges();
+
+    Vertex *vertex = graph->getVertexes();
+
+    for (int i = 0; i < graph->getNumberVertex(); i++)
+    {
+
+        this->add(&vertex[i]);
+    }
+    for (int i = 0; i < graph->getNumberEdges(); i++)
+    {
+
+        this->addEdge(edge[i].getVSource()->getId(), edge[i].getVDest()->getId(), edge[i].getWeight());
+    }
+}
+
 AdjacencyList::~AdjacencyList()
 {
     Node *excludeGoingDown = this->head;                                     //excludes the node while going down
     for (Node *tmp = head->getBottom(); tmp != NULL; tmp = tmp->getBottom()) //Destruct nodes going down
     {
-        Node *ExcludeGoingRight = tmp->getNext(); //excludes the node while going right
+        Adjacency *ExcludeGoingRight = tmp->getNext(); //excludes the node while going right
 
-        for (Node *tmp2 = tmp->getNext()->getNext(); tmp2 != NULL; tmp2 = tmp2->getNext()) //Destruct nodes going right
+        for (Adjacency *tmp2 = tmp->getNext()->getNext(); tmp2 != NULL; tmp2 = tmp2->getNext()) //Destruct nodes going right
         {
             delete ExcludeGoingRight;
             ExcludeGoingRight = tmp2;
@@ -79,10 +121,10 @@ AdjacencyList::~AdjacencyList()
 }
 void AdjacencyList::add(Vertex *v)
 { //adds a vertex to the graph
-
     tail->setBottom(new Node(v));
 
     tail = tail->getBottom();
+
     tail->getVertex()->setId(V++);
 }
 
@@ -102,29 +144,23 @@ void AdjacencyList::addEdge(Node *node1, Node *node2, int weight)
              << endl;
     else
     {
-        Node *tmp = node1;
-        for (; tmp->getNext() != NULL; tmp = tmp->getNext())
-            ;
-        tmp->setNext(new Node(node2->getVertex()));
-        E++;
 
-        Edge *tempEdge = new Edge[E];
-
-        if (this->edge == NULL)
+        if (node1->getNext() == NULL)
         {
-            tempEdge[E - 1] = Edge(weight, " ", true, node1->getVertex(), node2->getVertex());
-            this->edge = tempEdge;
+            node1->setNext(new Adjacency(node2->getVertex(), weight));
+            node1->getNext()->setWeight(weight);
         }
         else
         {
+            Adjacency *tmp = node1->getNext();
+            while (tmp->getNext() != NULL)
+                tmp = tmp->getNext();
 
-            for (int i = 0; i < E - 1; i++)
-            {
-                tempEdge[i] = edge[i];
-            }
-            tempEdge[E - 1] = Edge(weight, " ", true, node1->getVertex(), node2->getVertex());
-            this->edge = tempEdge;
+            tmp->setNext(new Adjacency(node2->getVertex(), weight));
+            tmp->getNext()->setWeight(weight);
         }
+
+        E++;
     }
 }
 
@@ -186,35 +222,39 @@ void AdjacencyList::print()
     }
     else
     {
-        for (Node *column = head->getBottom(); column != NULL; column = column->getBottom())
+        if (ponderated)
         {
+            for (Node *column = head->getBottom(); column != NULL; column = column->getBottom())
+            {
+                cout << " " + column->getVertex()->getLabel() << " Weight: (" << column->getVertex()->getWeight() << ") -> ";
 
-            for (Node *line = column; line != NULL; line = line->getNext())
-            {
-                if (line->getVertex()->getWeight() != -1)
-                    cout << " " + line->getVertex()->getLabel() << " Weight: (" << line->getVertex()->getWeight() << ") -> ";
-                else
-                    cout << " " + line->getVertex()->getLabel() << " -> ";
+                for (Adjacency *line = column->getNext(); line != NULL; line = line->getNext())
+                {
+
+                    cout << "Weight: " << line->getWeight() << " -> " << line->getVertex()->getLabel() << " Weight: (" << line->getVertex()->getWeight() << ") -> ";
+                }
+                cout << endl;
+                cout << " | "
+                     << endl;
             }
-            cout << endl;
-            cout << " | "
-                 << endl;
         }
-        if (edge != NULL)
+        else
         {
-            cout << "\nEdges: \n"
-                 << endl;
-            for (int i = 0; i < E; i++)
+            for (Node *column = head->getBottom(); column != NULL; column = column->getBottom())
             {
-                if (edge[i].getWeight() != -1)
-                    cout << " " << edge[i].getVSource()->getLabel() << " -> " << edge[i].getVDest()->getLabel() << "  Weight: [ " << edge[i].getWeight() << " ]"
-                         << endl;
-                else
-                    cout << " " << edge[i].getVSource()->getLabel() << " -> " << edge[i].getVDest()->getLabel() << ""
-                         << endl;
+                cout << " " + column->getVertex()->getLabel() << " -> ";
+
+                for (Adjacency *line = column->getNext(); line != NULL; line = line->getNext())
+                {
+
+                    cout << " " + line->getVertex()->getLabel() << " -> ";
+                }
+                cout << endl;
+                cout << " | "
+                     << endl;
             }
         }
-        cout << "\nEnd of Adjacency List\n"
-             << endl;
     }
+    cout << "\nEnd of Adjacency List\n"
+         << endl;
 }

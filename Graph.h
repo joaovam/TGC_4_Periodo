@@ -14,11 +14,11 @@ private:
 
 public:
     Graph();
-    Graph (bool pondered);
+    Graph(bool pondered);
     Graph(int numberVertex, int numberEdges, bool pondered);
     ~Graph();
     void addVertex(Vertex vertex);
-    //double weight, string label, bool isDirected, Vertex *vSource, Vertex *vDest
+    // double weight, string label, bool isDirected, Vertex *vSource, Vertex *vDest
     void addRelationship(double weight, string label, bool directed, Vertex *v1, Vertex *v2);
     void setNumberVertex(int number);
     void setNumberEdges(int number);
@@ -26,10 +26,10 @@ public:
     bool getPondered();
     int getNumberVertex();
     int getNumberEdges();
-    Edge * getEdges();
-    Vertex * getVertexes();
+    Edge *getEdges();
+    Vertex *getVertexes();
     void showGraph();
-   
+    Graph Residual();
 };
 
 #endif
