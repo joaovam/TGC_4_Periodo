@@ -29,14 +29,14 @@ int main(int argc, char *argv[])
         nondirectedNonPondered.addRelationship(1, "D-C", true, &nondirectedNonPondered.getVertexes()[3], &nondirectedNonPondered.getVertexes()[2]);
         nondirectedNonPondered.addRelationship(1, "D-F", true, &nondirectedNonPondered.getVertexes()[3], &nondirectedNonPondered.getVertexes()[5]);
 
-        nondirectedNonPondered.showGraph();
+        // nondirectedNonPondered.showGraph();
         Graph resid = nondirectedNonPondered.Residual();
         resid.showGraph();
         AdjacencyMatrix teste = AdjacencyMatrix(nondirectedNonPondered);
         int list[11];
-        cout << "entering" << endl;
+
         disjoint_Path path = disjoint_Path();
-        cout << "There can be maximum " << path.findDisjointPaths(teste.GetMatrix(), 0, 5) << " disjoint paths" << endl;
+        path.Run(teste.GetMatrix(), 0, 5);
     }
     catch (exception &e)
     {

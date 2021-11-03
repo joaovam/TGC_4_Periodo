@@ -2,6 +2,7 @@
 #define DISJOINT_PATH_H
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <cstring>
 #include <climits>
 #define V 6
@@ -13,12 +14,14 @@ private:
 public:
     disjoint_Path()
     {
-        cout << "teste" << endl;
+
         memset(graph, 0, sizeof(graph));
-        cout << "teste2" << endl;
     }
 
     bool bfs(int rGraph[V][V], int s, int t, int parent[]);
+    void Run(int **graph, int s, int t);
     int findDisjointPaths(int **graph, int s, int t);
+    void dfs(int s, int t);
+    void dfsREC(int, int);
 };
 #endif

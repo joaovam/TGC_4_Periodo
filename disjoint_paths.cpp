@@ -55,18 +55,17 @@ int disjoint_Path::findDisjointPaths(int **graph, int s, int t)
     int rGraph[V][V]; // Residual graph where rGraph[i][j] indicates
                       // residual capacity of edge from i to j (if there
                       // is an edge. If rGraph[i][j] is 0, then there is not)
-    cout << "Chegou a criar RGraph" << endl;
+
     for (u = 0; u < V; u++)
     {
-        cout << "u: " << u << endl;
+
         for (v = 0; v < V; v++)
         {
-            cout << "v: " << v << endl;
+
             rGraph[u][v] = graph[u][v];
         }
     }
 
-    cout << "Chegou a fazer o for" << endl;
     int parent[V]; // This array is filled by BFS and to store path
 
     int max_flow = 0; // There is no flow initially
@@ -98,25 +97,68 @@ int disjoint_Path::findDisjointPaths(int **graph, int s, int t)
         // Add path flow to overall flow
         max_flow += path_flow;
     }
-    // for (int i = 0; i < V; i++)
-    //{
-    //     for (int j = 0; j < V; j++)
-    //     {
 
-    //        this->graph[i][j] = rGraph[i][j];
-    //    }
-    //}
-    for (int i = 0; i < V; i++)
-    {
-        for (int j = 0; j < V; j++)
-        {
-            cout << this->graph[i][j] << " ";
-        }
-        cout << endl;
-    }
     // Return the overall flow (max_flow is equal to maximum
     // number of edge-disjoint paths)
     return max_flow;
 }
 
+void disjoint_Path::Run(int **graph, int s, int t)
+{
+    int x = findDisjointPaths(graph, s, t);
+    cout << "The Maximum number of disjoint-paths is " << x << endl;
+    cout << "Resulting Graph:" << endl;
+    for (int i = 0; i < V; i++)
+    {
+        for (int j = 0; j < V; j++)
+        {
+            cout << graph[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "Paths:" << endl;
+    dfs(s, t);
+}
+
+void disjoint_Path::dfs(int s, int t)
+{
+    stack<int> st;
+
+    int parent[V];
+    bool visited[V];
+    memset(visited, 0, sizeof(visited));
+
+    st.push(s);
+    visited[s] = true;
+    for (int i = 0; i < V; i++)
+    {
+        if (this->graph[s][i] > 0)
+        {
+            cout << s << " ->";
+            cout << i << " ->";
+            this->graph[s][i] = 0;
+            dfsREC(i, t);
+        }
+    }
+}
+
+void disjoint_Path::dfsREC(int atual, int final)
+{
+    if (atual == final)
+    {
+        cout << endl;
+    }
+    else
+    {
+        for (int i = 0; i < V; i++)
+        {
+            if (this->graph[atual][i] > 0)
+            {
+                cout << i << " ->";
+                this->graph[atual][i] = 0;
+                dfsREC(i, final);
+            }
+        }
+    }
+}
 // Driver program to test above functions
