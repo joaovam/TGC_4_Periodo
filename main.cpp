@@ -33,9 +33,10 @@ int main(int argc, char *argv[])
         Graph resid = nondirectedNonPondered.Residual();
         resid.showGraph();
         AdjacencyMatrix teste = AdjacencyMatrix(nondirectedNonPondered);
-
-        cout << "There can be maximum " << findDisjointPaths(teste.GetMatrix(), s, t)
-             << " edge-disjoint paths from " << s << " to " << t;
+        int list[11];
+        cout << "entering" << endl;
+        disjoint_Path path = disjoint_Path();
+        cout << "There can be maximum " << path.findDisjointPaths(teste.GetMatrix(), 0, 5) << " disjoint paths" << endl;
     }
     catch (exception &e)
     {
