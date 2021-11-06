@@ -1,7 +1,7 @@
 
 #include "AdjacencyList.h"
 #include "AdjacencyMatrix.h"
-#include "disjoint_paths.cpp"
+#include "DisjointPath.cpp"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -28,16 +28,65 @@ int main(int argc, char *argv[])
         nondirectedNonPondered.addRelationship(1, "C-F", true, &nondirectedNonPondered.getVertexes()[2], &nondirectedNonPondered.getVertexes()[5]);
         nondirectedNonPondered.addRelationship(1, "D-C", true, &nondirectedNonPondered.getVertexes()[3], &nondirectedNonPondered.getVertexes()[2]);
         nondirectedNonPondered.addRelationship(1, "D-F", true, &nondirectedNonPondered.getVertexes()[3], &nondirectedNonPondered.getVertexes()[5]);
-
-        // nondirectedNonPondered.showGraph();
+          // nondirectedNonPondered.showGraph();
+        cout << "grafo 1:" << endl;
         Graph resid = nondirectedNonPondered.Residual();
-        resid.showGraph();
+        //resid.showGraph();
         AdjacencyMatrix teste = AdjacencyMatrix(nondirectedNonPondered);
         int list[11];
 
         disjoint_Path path = disjoint_Path();
-        path.Run(teste.GetMatrix(), 0, 5);
+        path.procurarCaminhosDisjuntos(teste.GetMatrix(), 0, 5);
+    
+       
+        //==========================================================================================================================================================
+        cout << "=============================================================================================" << endl;
+        cout << "grafo 2:" << endl;
+        Graph nondirectedNonPondered2 = Graph(false);
+        nondirectedNonPondered2.addVertex(Vertex(0, "S", 0)); // 0
+        nondirectedNonPondered2.addVertex(Vertex(0, "U", 1)); // 1
+        nondirectedNonPondered2.addVertex(Vertex(0, "V", 2)); // 2
+        nondirectedNonPondered2.addVertex(Vertex(0, "T", 3)); // 3        
+
+        nondirectedNonPondered2.addRelationship(1, "S-U", true, &nondirectedNonPondered2.getVertexes()[0], &nondirectedNonPondered2.getVertexes()[1]);
+        nondirectedNonPondered2.addRelationship(1, "S-V", true, &nondirectedNonPondered2.getVertexes()[0], &nondirectedNonPondered2.getVertexes()[2]);
+        nondirectedNonPondered2.addRelationship(1, "U-V", true, &nondirectedNonPondered2.getVertexes()[1], &nondirectedNonPondered2.getVertexes()[2]);
+        nondirectedNonPondered2.addRelationship(1, "U-T", true, &nondirectedNonPondered2.getVertexes()[1], &nondirectedNonPondered2.getVertexes()[3]);
+        nondirectedNonPondered2.addRelationship(1, "V-T", true, &nondirectedNonPondered2.getVertexes()[2], &nondirectedNonPondered2.getVertexes()[3]);
+       
+        Graph residual2 = nondirectedNonPondered2.Residual();
+        //residual2.showGraph();
+        AdjacencyMatrix teste2 = AdjacencyMatrix(nondirectedNonPondered2);
+        int lista[11];
+        cout << "Grafo original: " << endl;
+        teste2.showMatrix();
+
+        disjoint_Path path2 = disjoint_Path();
+        path2.procurarCaminhosDisjuntos(teste2.GetMatrix(), 0, 3);
+
+
     }
+
+
+
+
+
+        //===========================================================================================================================================================    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
     catch (exception &e)
     {
         cerr << "Exception: " << e.what() << endl;
