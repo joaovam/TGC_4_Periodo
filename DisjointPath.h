@@ -5,7 +5,7 @@
 #include <stack>
 #include <cstring>
 #include <climits>
-#define V 4  //representa o número de vértices do grafo
+#define V 4 // representa o número de vértices do grafo
 class disjoint_Path
 {
 private:
